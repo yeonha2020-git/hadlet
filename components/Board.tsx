@@ -177,6 +177,13 @@ export default function Board() {
             ))}
           </section>
         )}
+        {!syncing && filteredMemos.length === 0 && (
+          <p className="py-24 text-center text-sm text-slate-500">
+            {search.trim()
+              ? "검색 결과가 없습니다."
+              : "아직 메모가 없습니다. + 버튼으로 첫 메모를 붙여 보세요."}
+          </p>
+        )}
       </main>
 
       <FloatingActionButton onClick={() => setFormOpen(true)} />

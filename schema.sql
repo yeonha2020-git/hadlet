@@ -10,9 +10,10 @@ create table if not exists public.memos (
 
 alter table public.memos enable row level security;
 
+-- 브라우저(anon/authenticated)는 password_hash를 제외한 컬럼만 읽을 수 있습니다.
+-- 생성·삭제는 서버 API가 service_role로만 수행합니다.
 revoke all on table public.memos from anon, authenticated;
-grant select, insert on table public.memos to anon;
-grant select, insert on table public.memos to authenticated;
+grant select (id, title, content, created_at) on table public.memos to anon, authenticated;
 grant select, insert, delete on table public.memos to service_role;
 
 drop policy if exists "Anyone can read memos" on public.memos;
@@ -23,15 +24,6 @@ to anon, authenticated
 using (true);
 
 drop policy if exists "Anyone can create memos" on public.memos;
-create policy "Anyone can create memos"
-on public.memos
-for insert
-to anon, authenticated
-with check (
-  char_length(title) between 1 and 80
-  and char_length(content) between 1 and 2000
-  and char_length(password_hash) >= 50
-);
 
 create index if not exists memos_created_at_idx
 on public.memos (created_at desc);

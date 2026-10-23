@@ -1,4 +1,4 @@
-# MINDLET
+# hadlet
 
 Next.js, Supabase, Vercel 기반의 단일 개인 메모 보드입니다. 섹션·컬럼·카테고리 없이 메모 카드만 자유롭게 쌓입니다.
 
@@ -25,8 +25,8 @@ GitHub 저장소를 Vercel에 연결한 뒤 Project Settings → Environment Var
 
 ## 보안 구조
 
-- 브라우저는 공개 URL/anon key로 메모 목록만 조회합니다.
-- 메모 생성 시 4자리 비밀번호 해시는 서버 API에서 bcrypt로 만듭니다.
+- 브라우저는 공개 URL/anon key로 메모 목록만 조회하며, `password_hash` 컬럼은 읽을 수 없습니다.
+- 메모 생성은 서버 API가 4자리 비밀번호를 bcrypt로 해시한 뒤 service role로 저장합니다.
 - 일반 삭제는 서버에서 해시를 비교한 뒤 service role로 수행합니다.
 - 관리자 인증과 삭제는 HttpOnly 세션 쿠키를 검증하는 서버 API에서만 수행합니다.
 - `schema.sql`은 명시적 `GRANT`와 RLS 정책을 함께 적용합니다.
