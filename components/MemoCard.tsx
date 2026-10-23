@@ -52,7 +52,7 @@ export default function MemoCard({
   return (
     <>
       <article
-        className={`relative break-inside-avoid rounded-xl border border-sky-300 bg-slate-50 p-4 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md ${
+        className={`ice-card break-inside-avoid p-4 transition duration-200 hover:-translate-y-1 ${
           index % 3 === 0
             ? "rotate-[-0.25deg]"
             : index % 3 === 1
@@ -61,14 +61,14 @@ export default function MemoCard({
         }`}
       >
         <div className="flex items-start justify-between gap-3">
-          <h2 className="min-w-0 flex-1 whitespace-pre-wrap break-words text-base font-semibold leading-6 text-slate-950">
+          <h2 className="min-w-0 flex-1 whitespace-pre-wrap break-words text-base font-semibold leading-6 text-slate-900">
             {memo.title}
           </h2>
           <div className="relative">
             <button
               type="button"
               onClick={() => setMenuOpen((value) => !value)}
-              className="rounded-lg p-1.5 text-slate-400 transition hover:bg-white hover:text-slate-700"
+              className="rounded-lg p-1.5 text-sky-800/60 transition hover:bg-white/60 hover:text-sky-900"
               aria-label="메모 메뉴"
             >
               <MoreHorizontal className="h-5 w-5" />
@@ -94,10 +94,10 @@ export default function MemoCard({
             )}
           </div>
         </div>
-        <p className="mt-3 whitespace-pre-wrap break-words text-sm leading-6 text-slate-700">
+        <p className="mt-3 whitespace-pre-wrap break-words text-sm leading-6 text-slate-800">
           {memo.content}
         </p>
-        <p className="mt-5 font-mono text-[11px] text-slate-400">
+        <p className="mt-5 font-mono text-[11px] text-sky-900/55">
           {new Intl.DateTimeFormat("ko-KR", {
             dateStyle: "medium",
             timeStyle: "short",

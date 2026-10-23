@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import AdminPanel from "./AdminPanel";
 import FloatingActionButton from "./FloatingActionButton";
+import GlacierBackdrop from "./GlacierBackdrop";
 import Header from "./Header";
 import MemoCard from "./MemoCard";
 import MemoFormModal from "./MemoFormModal";
@@ -143,6 +144,7 @@ export default function Board() {
 
   return (
     <div className="min-h-screen text-slate-900">
+      <GlacierBackdrop />
       <Header
         search={search}
         onSearch={setSearch}
@@ -160,7 +162,7 @@ export default function Board() {
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="메모 검색"
-            className="h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm shadow-sm outline-none focus:border-sky-400 focus:ring-4 focus:ring-sky-100"
+            className="h-11 w-full rounded-xl border border-white/25 bg-white/15 px-3 text-sm text-white shadow-sm outline-none backdrop-blur placeholder:text-sky-100/60 focus:border-sky-200 focus:ring-4 focus:ring-sky-300/25"
           />
         </label>
 
@@ -178,7 +180,7 @@ export default function Board() {
           </section>
         )}
         {!syncing && filteredMemos.length === 0 && (
-          <p className="py-24 text-center text-sm text-slate-500">
+          <p className="py-24 text-center text-sm text-sky-100/85 [text-shadow:0_1px_8px_rgb(2_32_58/0.8)]">
             {search.trim()
               ? "검색 결과가 없습니다."
               : "아직 메모가 없습니다. + 버튼으로 첫 메모를 붙여 보세요."}
